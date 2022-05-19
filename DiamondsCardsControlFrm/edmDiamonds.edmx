@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DiamondsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AereoLinea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="CortesiasConsumidas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourtesyId" Type="bigint" Nullable="false" />
+          <Property Name="CourtesyTypeId" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courtesy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Invitation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreCliente" Type="nvarchar" MaxLength="60" />
+          <Property Name="Vuelo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="SinConsumir" Type="int" Nullable="false" />
+          <Property Name="CourtesyType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CourtesyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="12" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Entidad" Type="nvarchar" MaxLength="25" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DescriptionCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DiamondsClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Supervisor" Type="nvarchar" MaxLength="20" />
+          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="ExitDate" Type="datetime" />
+          <Property Name="Vuelo" Type="nvarchar" MaxLength="10" />
+          <Property Name="ETD" Type="datetime" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Edad" Type="nvarchar" MaxLength="12" />
+          <Property Name="DocumentoHabilitante" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoDelDocTarjetaCredito" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoDelDocHabilVoucher" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoInvitacionLineaAerea" Type="nvarchar" MaxLength="10" />
+          <Property Name="DescripcionTC" Type="nvarchar" MaxLength="50" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
+          <Property Name="Coordinador" Type="nvarchar" MaxLength="20" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="NumeroSala" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Banco" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aerolinea" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aprobacion" Type="nvarchar" MaxLength="10" />
+          <Property Name="DocIdentidad" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourtesyAvailable" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="NoCoretesias" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patrocinador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SalaVIP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarjeta" Type="nvarchar" MaxLength="50" />
+          <Property Name="TarjetaId" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaxId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="10" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Admin" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="DiamondsModelStoreContainer">
+          <EntitySet Name="AereoLinea" EntityType="Self.AereoLinea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CortesiasConsumidas" EntityType="Self.CortesiasConsumidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courtesy" EntityType="Self.Courtesy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourtesyType" EntityType="Self.CourtesyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DescriptionCard" EntityType="Self.DescriptionCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiamondsClient" EntityType="Self.DiamondsClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitation" EntityType="Self.Invitation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patrocinador" EntityType="Self.Patrocinador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaVIP" EntityType="Self.SalaVIP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTarjeta" EntityType="Self.TipoTarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiamondsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaxId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Admin" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="DiamondsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Bancoes" EntityType="DiamondsModel.Banco" />
+          <EntitySet Name="Patrocinadors" EntityType="DiamondsModel.Patrocinador" />
+          <EntitySet Name="TipoTarjetas" EntityType="DiamondsModel.TipoTarjeta" />
+          <EntitySet Name="SalaVIPs" EntityType="DiamondsModel.SalaVIP" />
+          <EntitySet Name="AereoLineas" EntityType="DiamondsModel.AereoLinea" />
+          <EntitySet Name="DescriptionCards" EntityType="DiamondsModel.DescriptionCard" />
+          <EntitySet Name="DiamondsClients" EntityType="DiamondsModel.DiamondsClient" />
+          <EntitySet Name="CourtesyTypes" EntityType="DiamondsModel.CourtesyType" />
+          <EntitySet Name="Invitations" EntityType="DiamondsModel.Invitation" />
+          <EntitySet Name="CortesiasConsumidas" EntityType="DiamondsModel.CortesiasConsumida" />
+          <EntitySet Name="Courtesies" EntityType="DiamondsModel.Courtesy" />
+          <EntitySet Name="CreditCards" EntityType="DiamondsModel.CreditCard" />
+        </EntityContainer>
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Patrocinador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarjeta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TarjetaId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SalaVIP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AereoLinea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="ComplexType1" />
+        <EntityType Name="DescriptionCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DiamondsClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Supervisor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="ExitDate" Type="DateTime" Precision="3" />
+          <Property Name="Vuelo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ETD" Type="DateTime" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Edad" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentoHabilitante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoDelDocTarjetaCredito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoDelDocHabilVoucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoInvitacionLineaAerea" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DescripcionTC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinador" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroSala" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Banco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aerolinea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aprobacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DocIdentidad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourtesyAvailable" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CourtesyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="NoCoretesias" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CortesiasConsumida">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourtesyId" Type="Int64" Nullable="false" />
+          <Property Name="CourtesyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Courtesy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Invitation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreCliente" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Vuelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SinConsumir" Type="Int32" Nullable="false" />
+          <Property Name="CourtesyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Entidad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiamondsModelStoreContainer" CdmEntityContainer="DiamondsEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DiamondsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TaxId" ColumnName="TaxId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bancoes">
+            <EntityTypeMapping TypeName="DiamondsModel.Banco">
+              <MappingFragment StoreEntitySet="Banco">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patrocinadors">
+            <EntityTypeMapping TypeName="DiamondsModel.Patrocinador">
+              <MappingFragment StoreEntitySet="Patrocinador">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTarjetas">
+            <EntityTypeMapping TypeName="DiamondsModel.TipoTarjeta">
+              <MappingFragment StoreEntitySet="TipoTarjeta">
+                <ScalarProperty Name="TarjetaId" ColumnName="TarjetaId" />
+                <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaVIPs">
+            <EntityTypeMapping TypeName="DiamondsModel.SalaVIP">
+              <MappingFragment StoreEntitySet="SalaVIP">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AereoLineas">
+            <EntityTypeMapping TypeName="DiamondsModel.AereoLinea">
+              <MappingFragment StoreEntitySet="AereoLinea">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DescriptionCards">
+            <EntityTypeMapping TypeName="DiamondsModel.DescriptionCard">
+              <MappingFragment StoreEntitySet="DescriptionCard">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiamondsClients">
+            <EntityTypeMapping TypeName="DiamondsModel.DiamondsClient">
+              <MappingFragment StoreEntitySet="DiamondsClient">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CourtesyAvailable" ColumnName="CourtesyAvailable" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="DocIdentidad" ColumnName="DocIdentidad" />
+                <ScalarProperty Name="Aprobacion" ColumnName="Aprobacion" />
+                <ScalarProperty Name="Aerolinea" ColumnName="Aerolinea" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="NumeroSala" ColumnName="NumeroSala" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Coordinador" ColumnName="Coordinador" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="DescripcionTC" ColumnName="DescripcionTC" />
+                <ScalarProperty Name="NoInvitacionLineaAerea" ColumnName="NoInvitacionLineaAerea" />
+                <ScalarProperty Name="NoDelDocHabilVoucher" ColumnName="NoDelDocHabilVoucher" />
+                <ScalarProperty Name="NoDelDocTarjetaCredito" ColumnName="NoDelDocTarjetaCredito" />
+                <ScalarProperty Name="DocumentoHabilitante" ColumnName="DocumentoHabilitante" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ETD" ColumnName="ETD" />
+                <ScalarProperty Name="Vuelo" ColumnName="Vuelo" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourtesyTypes">
+            <EntityTypeMapping TypeName="DiamondsModel.CourtesyType">
+              <MappingFragment StoreEntitySet="CourtesyType">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitations">
+            <EntityTypeMapping TypeName="DiamondsModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitation">
+                <ScalarProperty Name="NoCoretesias" ColumnName="NoCoretesias" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CortesiasConsumidas">
+            <EntityTypeMapping TypeName="DiamondsModel.CortesiasConsumida">
+              <MappingFragment StoreEntitySet="CortesiasConsumidas">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CourtesyTypeId" ColumnName="CourtesyTypeId" />
+                <ScalarProperty Name="CourtesyId" ColumnName="CourtesyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courtesies">
+            <EntityTypeMapping TypeName="DiamondsModel.Courtesy">
+              <MappingFragment StoreEntitySet="Courtesy">
+                <ScalarProperty Name="CourtesyType" ColumnName="CourtesyType" />
+                <ScalarProperty Name="SinConsumir" ColumnName="SinConsumir" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Vuelo" ColumnName="Vuelo" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="Invitation" ColumnName="Invitation" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="DiamondsModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
